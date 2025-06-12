@@ -23,5 +23,18 @@ public class MyController {
         return "home";
     }
 
+    @GetMapping("/login")
+    public String login(Model model, @AuthenticationPrincipal OAuth2User oAuth2User) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (oAuth2User != null) {
+            System.out.println(authentication.toString());
+            model.addAttribute("user", oAuth2User.getAttribute("login"));
+            model.addAttribute("profileLink", oAuth2User.getAttribute("html_url"));
+            model.addAttribute("repos", oAuth2User.getAttribute("repos_url"));
+            return "home";
+        }
+        return "login";
+    }
+
 
 }
