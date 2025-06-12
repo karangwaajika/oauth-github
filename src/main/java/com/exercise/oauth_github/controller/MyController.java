@@ -47,5 +47,11 @@ public class MyController {
         return "logout";
     }
 
+    @GetMapping("/error")
+    public String error(@RequestParam(required = false) String error, Model model) {
+        model.addAttribute("errorMessage", error != null ? error : "Unknown error occurred.");
+        return "error";
+    }
+
 
 }
