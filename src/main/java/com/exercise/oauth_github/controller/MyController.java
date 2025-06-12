@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class MyController {
     @GetMapping("/home")
     public String home(Model model, @AuthenticationPrincipal OAuth2User oAuth2User) {
+        System.out.println(oAuth2User.getAttributes());
         model.addAttribute("user", oAuth2User.getAttribute("login"));
         model.addAttribute("profileLink", oAuth2User.getAttribute("html_url"));
         model.addAttribute("repos", oAuth2User.getAttribute("repos_url"));
